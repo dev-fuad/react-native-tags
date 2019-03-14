@@ -66,6 +66,17 @@ class Tags extends React.Component {
     this.addTag(this.state.text);
   };
 
+  onBlur = () => {
+    if (this.props.textInputProps.onBlur) {
+      this.props.textInputProps.onBlur();
+    }
+    if (!this.props.createTagOnBlur) {
+      return;
+    }
+
+    this.addTag(this.state.text);
+  };
+
   render() {
     const {
       containerStyle,
@@ -120,6 +131,7 @@ class Tags extends React.Component {
               style={[styles.textInput, inputStyle]}
               onChangeText={this.onChangeText}
               onSubmitEditing={this.onSubmitEditing}
+              onBlur={this.onBlur}
               underlineColorAndroid="transparent"
             />
           </View>
